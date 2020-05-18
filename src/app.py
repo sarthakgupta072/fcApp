@@ -18,7 +18,7 @@ print("connexion app configured")
 # Register MongoDB
 app.app.config["MONGO_URI"] = "mongodb://localhost:27017/PG3"
 
-# TODO: Try to remove this later
+# TODO: Try to remove this datebase name later
 
 mongo = PyMongo(app.app)
 
@@ -33,6 +33,8 @@ resident = {
 
 collection1id = mongo.db['collection1'].insert_one(resident).inserted_id
 print("Database should be created till now")
+
+app.add_api('swagger.yaml')
 
 if __name__ == '__main__':
     app.run()

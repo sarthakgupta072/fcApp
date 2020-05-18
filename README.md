@@ -4,4 +4,5 @@ Tech Involved:
 * Flask
 * Connexion
 * Gunicorn
+* MongoDB
 * [More to Come....]

@@ -1,0 +1,30 @@
+basePath: '/api'
+swagger: '2.0'
+info:
+  title: PG Management System
+  version: 0.0.1
+schemes: 
+  - https
+consumes:
+  - application/json
+produces:
+  - application/json
+paths:
+  /people:
+    get:
+      summary: Get the info people staying in the PG
+      description: Contains all the required info about people living in the PG
+      operationId: endpoints.getPeople
+      responses:
+        '200':
+          description: 'OK'
+        '400':
+          description: The request is malformed.
+        '401':
+          description: The request is unauthorized.
+        '403':
+          description: The requester is not authorized to perform this action.
+        '500':
+          description: An unexpected error occurred.
+      tags:
+        - People
