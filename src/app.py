@@ -4,37 +4,42 @@ from typing import Collection
 from connexion import App
 from flask_pymongo import PyMongo
 
-app = App(__name__)
 
-print("Connexion app created")
+def run_server():
+    app = App(__name__)
 
-# Set configurations for connexion app
-app.host = '0.0.0.0'
-app.port = '8080'
-app.debug = True
+    print("Connexion app created")
 
-print("connexion app configured")
+    # Set configurations for connexion app
+    app.host = '0.0.0.0'
+    app.port = '8080'
+    app.debug = True
 
-# Register MongoDB
-app.app.config["MONGO_URI"] = "mongodb://localhost:27017/PG3"
+    print("connexion app configured")
 
-# TODO: Try to remove this datebase name later
+    # Register MongoDB
+    app.app.config["MONGO_URI"] = "mongodb://localhost:27017/PG3"
 
-mongo = PyMongo(app.app)
+    # TODO: Try to remove this datebase name later
 
-# db = mongo.db['PG1']
+    mongo = PyMongo(app.app)
 
-resident = {
-    "Room": "102",
-    "Name": "Sarthak Gupta",
-    "Hometown": "Jammu",
-    "Company": "Intuit"
-}
+    # db = mongo.db['PG1']
 
-collection1id = mongo.db['collection1'].insert_one(resident).inserted_id
-print("Database should be created till now")
+    resident = {
+        "Room": "102",
+        "Name": "Sarthak Gupta",
+        "Hometown": "Jammu",
+        "Company": "Intuit"
+    }
 
-app.add_api('swagger.yaml')
+    collection1id = mongo.db['collection1'].insert_one(resident).inserted_id
+    print("Database should be created till now")
+
+    app.add_api('swagger.yaml')
+    return app
+
 
 if __name__ == '__main__':
+    app = run_server()
     app.run()
